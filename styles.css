@@ -8,28 +8,43 @@
 body {
   font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, sans-serif;
-  background: #e5e5e5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #faf9f6;
   min-height: 100vh;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 /* Mobile Container */
 .mobile-container {
   position: relative;
-  width: 360px;
-  height: 800px;
+  width: 100%;
+  min-height: 100vh;
   background: #faf9f6;
   overflow-y: auto;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Desktop view - 360px width centered with shadow */
+@media (min-width: 768px) {
+  body {
+    background: #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .mobile-container {
+    width: 360px;
+    height: 800px;
+    min-height: auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  }
 }
 
 /* Header */
 .header {
   position: absolute;
-  width: 360px;
+  width: 100%;
   height: 42px;
   left: 0;
   top: 0;
@@ -39,6 +54,12 @@ body {
   align-items: center;
   padding: 8px 16px;
   gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    width: 360px;
+  }
 }
 
 .app-icon {
@@ -78,13 +99,19 @@ body {
   padding: 12px 16px;
   gap: 8px;
   position: absolute;
-  width: 320px;
+  width: calc(100% - 40px);
   height: 48px;
   left: 20px;
   top: 58px;
   border: 1px solid #d0d5d5;
   border-radius: 8px;
   background: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .title-input-container {
+    width: 320px;
+  }
 }
 
 .title-input {
@@ -115,7 +142,7 @@ body {
   padding: 16px;
   gap: 8px;
   position: absolute;
-  width: 320px;
+  width: calc(100% - 40px);
   left: 20px;
   top: 122px;
   background: #f5f5e6;
@@ -123,6 +150,12 @@ body {
   box-shadow: 0px 16px 32px -12px rgba(95, 95, 88, 0.05);
   border-radius: 12px;
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .info-banner {
+    width: 320px;
+  }
 }
 
 .info-banner.hidden {
@@ -152,13 +185,19 @@ body {
 }
 
 .info-description {
-  width: 288px;
+  width: 100%;
   font-family: "Pretendard Variable", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
   color: #1a1f1f;
+}
+
+@media (min-width: 768px) {
+  .info-description {
+    width: 288px;
+  }
 }
 
 .close-banner {
@@ -187,7 +226,7 @@ body {
   padding: 12px 16px;
   gap: 8px;
   position: absolute;
-  width: 320px;
+  width: calc(100% - 40px);
   min-height: 200px;
   left: 20px;
   top: 240px;
@@ -195,6 +234,12 @@ body {
   border-radius: 8px;
   background: #ffffff;
   transition: top 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .content-input-container {
+    width: 320px;
+  }
 }
 
 .content-input-container.banner-closed {
@@ -222,10 +267,16 @@ body {
 /* Upload Section */
 .upload-section {
   position: absolute;
-  width: 320px;
+  width: calc(100% - 40px);
   left: 20px;
   top: 458px;
   transition: top 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .upload-section {
+    width: 320px;
+  }
 }
 
 .upload-section.banner-closed {
@@ -240,7 +291,7 @@ body {
   align-items: center;
   padding: 8px 0;
   gap: 8px;
-  width: 320px;
+  width: 100%;
   height: 48px;
   background: transparent;
   border: 1px solid #567c53;
