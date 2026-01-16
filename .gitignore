@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+
+# Temporary files
+*.tmp
+.cache/
+
+# Backend (Spring Boot)
+dasida/target/
+dasida/.gradle/
+dasida/build/
+dasida/out/
+dasida/*.iml
+dasida/.idea/
+dasida/bin/
+
+# Firebase credentials
+dasida/src/main/resources/firebase/
+
+# Database
+*.db
+*.sqlite

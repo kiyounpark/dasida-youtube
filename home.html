@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다시다 - 홈</title>
+    <link rel="stylesheet" href="home-styles.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.5/dist/axios.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <!-- Mobile Container -->
+    <div class="mobile-container">
+        <!-- Header -->
+        <header class="header">
+            <img src="appbar-icon.png" alt="앱 로고" class="app-icon">
+        </header>
+
+        <!-- 직접 입력한 지식 기반 생성된 퀴즈들 섹션 -->
+        <section class="quiz-section">
+            <h2 class="section-title">직접 입력한 지식 기반 생성된 퀴즈들</h2>
+
+            <!-- Swiper Container -->
+            <div class="swiper quiz-swiper">
+                <div class="swiper-wrapper" id="quizCardContainer">
+                    <!-- 퀴즈 카드가 동적으로 추가됩니다 -->
+                </div>
+            </div>
+            <div class="swipe-hint">← 스와이프하여 다음 퀴즈 보기 →</div>
+        </section>
+
+        <!-- 직접 추가한 지식들 섹션 -->
+        <section class="knowledge-section">
+            <h2 class="section-title">직접 추가한 지식들</h2>
+            <div class="knowledge-list" id="knowledgeList">
+                <!-- 지식 목록이 동적으로 추가됩니다 -->
+            </div>
+        </section>
+
+        <!-- 지식 추가 버튼 (우측 하단) -->
+        <button class="add-knowledge-button" id="addKnowledgeButton">
+            지식 추가하기
+        </button>
+
+        <!-- Bottom Navigation Bar -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" id="navHome">
+                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" fill="#567C53"/>
+                    <path d="M9 22V12H15V22" fill="#FFFFFF"/>
+                </svg>
+                <span class="nav-label active-label">홈</span>
+            </button>
+            <button class="nav-item" id="navWrongAnswers">
+                <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#879595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#879595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 15L12 13L14 15" stroke="#879595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 13V18" stroke="#879595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="nav-label">오답노트</span>
+            </button>
+        </nav>
+    </div>
+
+    <script type="module" src="home.js"></script>
+</body>
+</html>

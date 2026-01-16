@@ -1,0 +1,428 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    background: #E5E5E5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Mobile Container */
+.mobile-container {
+    position: relative;
+    width: 360px;
+    height: 800px;
+    background: #FAF9F6;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.header {
+    position: absolute;
+    width: 360px;
+    height: 42px;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 10px;
+}
+
+.app-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+/* Section Styles */
+.quiz-section,
+.knowledge-section {
+    padding: 0 20px;
+    margin-bottom: 24px;
+}
+
+.quiz-section {
+    margin-top: 60px;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 130%;
+    color: #000000;
+    margin-bottom: 16px;
+}
+
+/* Swiper Styles */
+.quiz-swiper {
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+/* Quiz Card - 이제 swiper-slide가 됨 */
+.quiz-card {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(26, 31, 31, 0.04);
+    border-radius: 16px;
+    padding: 40px 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    height: auto;
+}
+
+.quiz-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.quiz-question {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1A1F1F;
+}
+
+.quiz-source {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 130%;
+    color: #5A6868;
+}
+
+/* Swiper Slide 설정 */
+.swiper-slide {
+    width: 320px !important;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.swiper-slide-active {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 2;
+}
+
+.swiper-slide-next,
+.swiper-slide-prev {
+    transform: scale(0.9);
+    opacity: 0.5;
+}
+
+/* Swipe Hint */
+.swipe-hint {
+    text-align: center;
+    font-size: 14px;
+    color: #879595;
+    margin-top: 12px;
+    font-weight: 500;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Quiz Answer Input Container */
+.quiz-answer-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.quiz-answer-input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 16px;
+    border: 1px solid #D0D5D5;
+    border-radius: 8px;
+    font-family: 'Pretendard Variable';
+    font-size: 14px;
+    color: #1A1F1F;
+}
+
+.quiz-answer-input:focus {
+    outline: none;
+    border-color: #6B9A68;
+}
+
+.submit-answer-button {
+    padding: 12px 20px;
+    background: #6B9A68;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Pretendard Variable';
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-answer-button:hover {
+    background: #567C53;
+}
+
+.submit-answer-button:disabled {
+    background: #D0D5D5;
+    cursor: not-allowed;
+}
+
+/* Knowledge List */
+.knowledge-list {
+    background: #FFFFFF;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.knowledge-item {
+    padding: 20px 16px;
+    border-bottom: 1px solid #D0D5D5;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.knowledge-item:last-child {
+    border-bottom: none;
+}
+
+.knowledge-item:hover {
+    background: #F5F5F5;
+}
+
+.knowledge-title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+    color: #000000;
+}
+
+.knowledge-preview {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #5A6868;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Add Knowledge Button */
+.add-knowledge-button {
+    position: fixed;
+    bottom: 100px;
+    right: calc(50% - 160px);
+    padding: 12px 24px;
+    background: #C4D7C2;
+    box-shadow: 0px 16px 40px -8px rgba(95, 95, 88, 0.16);
+    border-radius: 24px;
+    border: none;
+    font-family: 'Pretendard Variable';
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 50;
+}
+
+.add-knowledge-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 18px 44px -8px rgba(95, 95, 88, 0.24);
+}
+
+.add-knowledge-button:active {
+    transform: translateY(0);
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: calc(50% - 180px);
+    width: 360px;
+    height: 76px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(22.9px);
+    border-top: 0.5px solid #9FAAAA;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 24px;
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 130%;
+    color: #879595;
+}
+
+.nav-label.active-label {
+    font-weight: 600;
+    color: #6B9A68;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.empty-message {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #5A6868;
+}
+
+/* Loading State */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #D0D5D5;
+    border-top-color: #6B9A68;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Quiz Completion */
+.quiz-completion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.completion-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.completion-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 130%;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.completion-score {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #6B9A68;
+}
+
+/* Toast Message */
+.toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(26, 31, 31, 0.9);
+    color: #FFFFFF;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-family: 'Pretendard Variable';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    max-width: 320px;
+    text-align: center;
+}
+
+.toast-show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 360px) {
+    .mobile-container {
+        width: 100%;
+    }
+
+    .bottom-nav {
+        left: 0;
+        width: 100%;
+    }
+
+    .add-knowledge-button {
+        right: 20px;
+    }
+}

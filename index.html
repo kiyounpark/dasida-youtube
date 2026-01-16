@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지식 추가</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.5/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- Mobile Container -->
+    <div class="mobile-container">
+        <!-- Header -->
+        <header class="header">
+            <img src="appbar-icon.png" alt="앱 로고" class="app-icon">
+            <button class="submit-button" disabled>등록</button>
+        </header>
+
+        <!-- Title Input -->
+        <div class="input-container title-input-container">
+            <input
+                type="text"
+                class="title-input"
+                placeholder="제목을 입력해주세요."
+                maxlength="100"
+            >
+        </div>
+
+        <!-- Info Banner -->
+        <div class="info-banner">
+            <div class="info-header">
+                <span class="info-title">이미지 업로드에 대해 알려드려요!</span>
+            </div>
+            <p class="info-description">이미지 업로드 시 품질이 낮을경우 퀴즈 생성의 정확도가 떨어질 수 있어요.</p>
+            <button class="close-banner" aria-label="닫기">
+                <svg class="icon-x" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="#476644" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content Input -->
+        <div class="input-container content-input-container">
+            <textarea
+                class="content-input"
+                placeholder="내용을 입력하거나 이미지를 업로드 해주세요."
+                rows="10"
+            ></textarea>
+        </div>
+
+        <!-- Image Upload Section -->
+        <div class="upload-section">
+            <button class="upload-button">
+                <svg class="icon-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19M5 12H19" stroke="#567C53" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="upload-text">사진 업로드(<span class="upload-count">0</span>/3)</span>
+            </button>
+            <input
+                type="file"
+                class="file-input"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+                style="display: none;"
+            >
+            <p class="upload-info">* 지원 가능파일: JPEG, PNG, WEBP</p>
+
+            <!-- Image Preview Container -->
+            <div class="image-preview-container"></div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
