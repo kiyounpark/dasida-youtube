@@ -8,7 +8,7 @@
  * API 기본 설정
  * @constant {string} BASE_URL - API 서버의 기본 URL
  */
-const BASE_URL = "https://local.api.dasida.org:8443";
+const BASE_URL = "https://dev.api.dasida.org";
 
 /**
  * API 엔드포인트 경로

@@ -7,7 +7,7 @@
  * API 기본 설정
  * @constant {string} API_BASE_URL - API 서버의 기본 URL
  */
-const API_BASE_URL = 'https://local.api.dasida.org:8443';
+const API_BASE_URL = 'https://dev.api.dasida.org';
 
 /**
  * API 키
