@@ -100,12 +100,11 @@ function normalizeHomeData(homeData) {
  * @returns {boolean} return.correct - 정답 여부
  * @throws {Error} API 요청 실패 시
  */
-export async function submitQuizAnswer(quizId, answer, dayType = 0) {
+export async function submitQuizAnswer(quizId, answer, dayType = DEFAULT_DAY_TYPE) {
     try {
-        const resolvedDayType = DEFAULT_DAY_TYPE;
         const response = await apiClient.post(`/quizzes/${quizId}/answers`, {
             answer: answer.trim(),
-            day_type: resolvedDayType
+            day_type: dayType
         });
         return response.data;
     } catch (error) {
