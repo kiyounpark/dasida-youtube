@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로딩 애니메이션 테스트</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .test-container {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .test-button {
+            font-family: 'Pretendard Variable', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 32px;
+            background: #567C53;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .test-button:hover {
+            background: #476644;
+        }
+
+        .test-info {
+            font-family: 'Pretendard Variable', sans-serif;
+            margin-top: 40px;
+            color: #1A1F1F;
+            line-height: 1.6;
+        }
+
+        .test-info h2 {
+            color: #567C53;
+            margin-bottom: 16px;
+        }
+
+        .test-info p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Container -->
+    <div class="mobile-container">
+        <div class="test-container">
+            <h1 style="font-family: 'Pretendard Variable'; color: #567C53; margin-bottom: 40px;">
+                🧪 로딩 애니메이션 테스트
+            </h1>
+
+            <button id="testButton" class="test-button" onclick="testLoading1()">
+                1초 로딩 테스트
+            </button>
+
+            <button class="test-button" onclick="testLoading3()">
+                3초 로딩 테스트
+            </button>
+
+            <button class="test-button" onclick="testLoading5()">
+                5초 로딩 테스트
+            </button>
+
+            <div class="test-info">
+                <h2>테스트 방법</h2>
+                <p>위의 버튼을 클릭하면 HTTP 통신을 시뮬레이션합니다.</p>
+                <p>로딩 중에는 버튼이 "지식 우리는중..."으로 바뀝니다.</p>
+                <p>로딩 이미지가 상하로 부드럽게 움직이는지 확인하세요.</p>
+                <p>각 버튼은 1초, 3초, 5초 동안 로딩 상태를 유지합니다.</p>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" style="display: none;">
+            <div class="loading-content">
+                <img src="loading-image.png" alt="로딩 중" class="loading-image">
+                <p class="loading-text">지식 우리는중...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLoading() {
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'flex';
+            }
+        }
+
+        function hideLoading() {
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none';
+            }
+        }
+
+        async function simulateHttpRequest(duration) {
+            return new Promise(resolve => {
+                setTimeout(resolve, duration);
+            });
+        }
+
+        async function testLoading1() {
+            const button = event.target;
+            const originalText = button.textContent;
+
+            console.log('1초 로딩 테스트 시작');
+            button.disabled = true;
+            button.textContent = '지식 우리는중...';
+            showLoading();
+
+            await simulateHttpRequest(1000);
+
+            hideLoading();
+            button.textContent = originalText;
+            button.disabled = false;
+            console.log('1초 로딩 테스트 완료');
+        }
+
+        async function testLoading3() {
+            const button = event.target;
+            const originalText = button.textContent;
+
+            console.log('3초 로딩 테스트 시작');
+            button.disabled = true;
+            button.textContent = '지식 우리는중...';
+            showLoading();
+
+            await simulateHttpRequest(3000);
+
+            hideLoading();
+            button.textContent = originalText;
+            button.disabled = false;
+            console.log('3초 로딩 테스트 완료');
+        }
+
+        async function testLoading5() {
+            const button = event.target;
+            const originalText = button.textContent;
+
+            console.log('5초 로딩 테스트 시작');
+            button.disabled = true;
+            button.textContent = '지식 우리는중...';
+            showLoading();
+
+            await simulateHttpRequest(5000);
+
+            hideLoading();
+            button.textContent = originalText;
+            button.disabled = false;
+            console.log('5초 로딩 테스트 완료');
+        }
+    </script>
+</body>
+</html>
