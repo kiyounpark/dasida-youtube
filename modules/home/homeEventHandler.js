@@ -8,6 +8,49 @@ import { getSwiperInstance } from './quizSwiper.js';
 import { showToast } from './toast.js';
 
 /**
+ * 모든 퀴즈 완료 시 표시할 화면을 렌더링합니다.
+ */
+function showAllQuizzesCompleted() {
+    const quizContainer = document.getElementById('quizCardContainer');
+    if (!quizContainer) return;
+
+    // Swiper 인스턴스 제거
+    const swiperInstance = getSwiperInstance();
+    if (swiperInstance) {
+        swiperInstance.destroy(true, true);
+    }
+
+    // 완료 메시지 표시
+    quizContainer.innerHTML = `
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            padding: 40px 20px;
+            text-align: center;
+        ">
+            <div style="font-size: 64px; margin-bottom: 16px;">🎉</div>
+            <div style="
+                font-family: 'Pretendard Variable';
+                font-size: 20px;
+                font-weight: 700;
+                color: #1A1F1F;
+                margin-bottom: 8px;
+            ">모든 퀴즈를 완료했습니다!</div>
+            <div style="
+                font-family: 'Pretendard Variable';
+                font-size: 14px;
+                color: #6F8080;
+            ">오늘도 훌륭하게 학습하셨어요</div>
+        </div>
+    `;
+
+    showToast('🎉 모든 퀴즈를 완료했습니다!');
+}
+
+/**
  * 지식 추가 페이지 URL
  * @constant {string} KNOWLEDGE_ADD_PAGE - 지식 추가 페이지 경로
  */
@@ -165,12 +208,27 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
                     : -1;
                 const currentIndex = rawIndex >= 0 ? rawIndex : swiperInstance.activeIndex;
 
-                if (currentIndex < quizzes.length - 1) {
-                    console.log('[QuizAnswer] slide next', currentIndex + 1);
-                    swiperInstance.slideTo(currentIndex + 1);
+                // 현재 퀴즈를 배열에서 제거
+                quizzes.splice(currentIndex, 1);
+
+                // Swiper에서 현재 슬라이드 제거
+                swiperInstance.removeSlide(currentIndex);
+
+                console.log('[QuizAnswer] removed slide', currentIndex, 'remaining:', quizzes.length);
+
+                // 모든 퀴즈를 완료한 경우
+                if (quizzes.length === 0) {
+                    console.log('[QuizAnswer] all quizzes completed');
+                    showAllQuizzesCompleted();
                 } else {
-                    console.log('[QuizAnswer] quiz completed');
-                    showToast('🎉 모든 퀴즈를 완료했습니다!');
+                    // 입력 필드에 포커스 (다음 퀴즈 풀이를 위해)
+                    setTimeout(() => {
+                        const newActiveSlide = swiperInstance.slides[swiperInstance.activeIndex];
+                        const newInput = newActiveSlide?.querySelector('.quiz-answer-input');
+                        if (newInput) {
+                            newInput.focus();
+                        }
+                    }, 300);
                 }
             }, 1000);
         } else {
