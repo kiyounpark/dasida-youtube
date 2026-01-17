@@ -104,7 +104,7 @@ export async function submitQuizAnswer(quizId, answer, dayType = DEFAULT_DAY_TYP
     try {
         const response = await apiClient.post(`/quizzes/${quizId}/answers`, {
             answer: answer.trim(),
-            day_type: dayType
+            dayType: dayType
         });
         return response.data;
     } catch (error) {
