@@ -21,6 +21,11 @@ let quizzes = [];
  */
 let correctCount = 0;
 
+function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent)
+        || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
 function blurActiveAnswerInput() {
     const activeElement = document.activeElement;
     if (activeElement && activeElement.classList.contains('quiz-answer-input')) {
@@ -42,30 +47,22 @@ export function initQuizSwiper(quizData) {
 
     // Swiper 초기화 (렌더링 후에 실행되어야 함)
     setTimeout(() => {
-        swiperInstance = new Swiper('.quiz-swiper', {
-            // 카드 겹치기 효과
-            effect: 'cards',
+        const swiperOptions = {
             grabCursor: true,
             preventClicks: false,
             preventClicksPropagation: false,
             touchStartPreventDefault: false,
             noSwiping: true,
             noSwipingSelector: '.quiz-answer-input, .submit-answer-button',
-
-            // 카드 효과 설정
-            cardsEffect: {
-                slideShadows: true,
-                perSlideOffset: 8,
-                perSlideRotate: 2,
-            },
-
-            // 이벤트 핸들러
             on: {
                 touchStart: function(swiper, event) {
                     if (event?.target?.closest?.('.quiz-answer-input, .submit-answer-button')) {
                         return;
                     }
                     blurActiveAnswerInput();
+                },
+                touchEnd: function() {
+                    this.allowClick = true;
                 },
                 slideChangeTransitionStart: function() {
                     blurActiveAnswerInput();
@@ -74,7 +71,20 @@ export function initQuizSwiper(quizData) {
                     updateProgressIndicator(this.activeIndex);
                 }
             }
-        });
+        };
+
+        if (isIOS()) {
+            swiperOptions.effect = 'slide';
+        } else {
+            swiperOptions.effect = 'cards';
+            swiperOptions.cardsEffect = {
+                slideShadows: true,
+                perSlideOffset: 8,
+                perSlideRotate: 2,
+            };
+        }
+
+        swiperInstance = new Swiper('.quiz-swiper', swiperOptions);
 
         updateProgressIndicator(0);
     }, 100);
