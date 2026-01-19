@@ -227,10 +227,25 @@ body {
 /* Quiz Answer Input Container */
 .quiz-answer-input-container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 8px;
     margin-top: 12px;
     width: 100%;
+}
+
+.quiz-answer-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.quiz-answer-error {
+    font-family: 'Pretendard Variable';
+    font-size: 12px;
+    color: #E53935;
+    margin-top: 4px;
+    display: none;
 }
 
 .quiz-answer-input {

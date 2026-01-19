@@ -29,14 +29,17 @@ export function createQuizCardHTML(quiz) {
                 <div class="quiz-content">
                     <div class="quiz-question">${quiz.question}</div>
                     <div class="quiz-answer-input-container">
-                        <input
-                            type="text"
-                            class="quiz-answer-input"
-                            placeholder="정답을 입력하세요"
-                            autocomplete="off"
-                            aria-label="정답 입력"
-                        />
-                        <button type="button" class="submit-answer-button">확인</button>
+                        <div class="quiz-answer-input-row">
+                            <input
+                                type="text"
+                                class="quiz-answer-input"
+                                placeholder="정답을 입력하세요"
+                                autocomplete="off"
+                                aria-label="정답 입력"
+                            />
+                            <button type="button" class="submit-answer-button">확인</button>
+                        </div>
+                        <div class="quiz-answer-error">정답을 입력해주세요</div>
                     </div>
                 </div>
                 <div class="quiz-source">${quiz.source || '지식'}</div>

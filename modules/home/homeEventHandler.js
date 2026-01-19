@@ -136,12 +136,20 @@ export function setupQuizAnswerSubmit(quizzes) {
     quizCards.forEach((quizCard) => {
         const answerInput = quizCard.querySelector('.quiz-answer-input');
         const submitButton = quizCard.querySelector('.submit-answer-button');
+        const errorElement = quizCard.querySelector('.quiz-answer-error');
 
         if (!answerInput) return;
 
         quizCard.addEventListener('click', () => {
             console.log('[QuizAnswer] focus input', quizCard.dataset.quizId);
             answerInput.focus();
+        });
+
+        // 입력 시작하면 에러 메시지 숨기기
+        answerInput.addEventListener('input', () => {
+            if (errorElement && answerInput.value.trim()) {
+                errorElement.style.display = 'none';
+            }
         });
 
         if (submitButton) {
@@ -163,9 +171,18 @@ export function setupQuizAnswerSubmit(quizzes) {
 
 async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) {
     const userAnswer = answerInput.value.trim();
+    const errorElement = quizCard.querySelector('.quiz-answer-error');
+
+    // 에러 메시지 숨기기
+    if (errorElement) {
+        errorElement.style.display = 'none';
+    }
 
     if (!userAnswer) {
-        showToast('정답을 입력해주세요');
+        // 에러 메시지 표시
+        if (errorElement) {
+            errorElement.style.display = 'block';
+        }
         return;
     }
 
