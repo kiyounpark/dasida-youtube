@@ -145,6 +145,18 @@ export function setupQuizAnswerSubmit(quizzes) {
             answerInput.focus();
         });
 
+        quizCard.addEventListener('touchend', (event) => {
+            if (event.target.closest('.quiz-answer-input, .submit-answer-button')) {
+                return;
+            }
+            console.log('[QuizAnswer] touch focus input', quizCard.dataset.quizId);
+            answerInput.focus();
+        });
+
+        answerInput.addEventListener('touchend', () => {
+            answerInput.focus();
+        });
+
         // 입력 시작하면 에러 메시지 숨기기
         answerInput.addEventListener('input', () => {
             if (errorElement && answerInput.value.trim()) {
