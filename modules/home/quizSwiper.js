@@ -167,8 +167,18 @@ function showFeedback(isCorrect) {
  * @param {number} currentIndex - 현재 퀴즈 인덱스
  */
 function updateProgressIndicator(currentIndex) {
-    console.log(`퀴즈 진행: ${currentIndex + 1}/${quizzes.length}`);
-    // TODO: UI에 진행률 표시
+    const progressElement = document.querySelector('.quiz-progress');
+    if (!progressElement) {
+        console.log(`퀴즈 진행: ${currentIndex + 1}/${quizzes.length}`);
+        return;
+    }
+
+    if (!quizzes || quizzes.length === 0) {
+        progressElement.textContent = '';
+        return;
+    }
+
+    progressElement.textContent = `${currentIndex + 1} / ${quizzes.length}`;
 }
 
 /**
