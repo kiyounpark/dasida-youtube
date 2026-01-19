@@ -189,7 +189,8 @@ body {
 
 /* Swiper Slide 설정 */
 .swiper-slide {
-    width: 320px !important;
+    width: 100% !important;
+    max-width: 320px;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
