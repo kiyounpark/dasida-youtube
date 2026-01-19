@@ -176,7 +176,7 @@ function updateProgressIndicator(currentIndex) {
         return;
     }
 
-    const totalSlides = swiperInstance?.slides?.length ?? quizzes.length;
+    const totalSlides = swiperInstance?.slides?.length || quizzes.length;
     if (!totalSlides) {
         progressElement.textContent = '';
         return;
