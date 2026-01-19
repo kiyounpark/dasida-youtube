@@ -230,6 +230,8 @@ body {
 }
 
 .quiz-pagination {
+    position: static;
+    width: auto;
     display: flex;
     justify-content: center;
     gap: 6px;
