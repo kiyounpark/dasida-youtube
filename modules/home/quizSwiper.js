@@ -21,8 +21,8 @@ let quizzes = [];
  */
 let correctCount = 0;
 
-function isIOS() {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent)
+function isMobileDevice() {
+    return /Android|iPad|iPhone|iPod/.test(navigator.userAgent)
         || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 }
 
@@ -47,6 +47,10 @@ export function initQuizSwiper(quizData) {
 
     // Swiper 초기화 (렌더링 후에 실행되어야 함)
     setTimeout(() => {
+        if (isMobileDevice()) {
+            document.documentElement.classList.add('mobile');
+        }
+
         const swiperOptions = {
             grabCursor: true,
             preventClicks: false,
@@ -54,6 +58,10 @@ export function initQuizSwiper(quizData) {
             touchStartPreventDefault: false,
             noSwiping: true,
             noSwipingSelector: '.quiz-answer-input, .submit-answer-button',
+            pagination: {
+                el: '.quiz-pagination',
+                clickable: true,
+            },
             on: {
                 touchStart: function(swiper, event) {
                     if (event?.target?.closest?.('.quiz-answer-input, .submit-answer-button')) {
@@ -73,7 +81,7 @@ export function initQuizSwiper(quizData) {
             }
         };
 
-        if (isIOS()) {
+        if (isMobileDevice()) {
             swiperOptions.effect = 'slide';
         } else {
             swiperOptions.effect = 'cards';

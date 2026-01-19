@@ -194,6 +194,10 @@ body {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.mobile .swiper-slide {
+    max-width: none;
+}
+
 .swiper-slide-active {
     transform: scale(1);
     opacity: 1;
@@ -223,6 +227,26 @@ body {
     50% {
         opacity: 1;
     }
+}
+
+.quiz-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.quiz-pagination .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: #CCD5D5;
+    opacity: 1;
+}
+
+.quiz-pagination .swiper-pagination-bullet-active {
+    background: #6B9A68;
+    width: 18px;
+    border-radius: 999px;
 }
 
 /* Quiz Answer Input Container */
