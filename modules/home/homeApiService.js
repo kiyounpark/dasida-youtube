@@ -49,7 +49,8 @@ const apiClient = axios.create({
  */
 export async function fetchHomeData() {
     try {
-        const response = await apiClient.get('/home');
+        // 유튜브 시연용: 모든 퀴즈와 지식을 조회
+        const response = await apiClient.get('/home/demo');
         return normalizeHomeData(response.data);
     } catch (error) {
         console.error('홈 데이터 조회 실패:', error);
