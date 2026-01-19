@@ -21,6 +21,13 @@ let quizzes = [];
  */
 let correctCount = 0;
 
+function blurActiveAnswerInput() {
+    const activeElement = document.activeElement;
+    if (activeElement && activeElement.classList.contains('quiz-answer-input')) {
+        activeElement.blur();
+    }
+}
+
 /**
  * 퀴즈 스와이퍼를 초기화합니다.
  * Swiper 라이브러리를 사용하여 슬라이드 기능을 설정합니다.
@@ -54,6 +61,15 @@ export function initQuizSwiper(quizData) {
 
             // 이벤트 핸들러
             on: {
+                touchStart: function(swiper, event) {
+                    if (event?.target?.closest?.('.quiz-answer-input, .submit-answer-button')) {
+                        return;
+                    }
+                    blurActiveAnswerInput();
+                },
+                slideChangeTransitionStart: function() {
+                    blurActiveAnswerInput();
+                },
                 slideChange: function() {
                     updateProgressIndicator(this.activeIndex);
                 }

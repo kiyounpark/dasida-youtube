@@ -259,7 +259,12 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
             // 애니메이션 종료 후 클래스 제거 및 입력창 다시 선택
             setTimeout(() => {
                 quizCard.classList.remove('wrong-answer');
-                answerInput.select();
+                const currentSlide = quizCard.closest('.swiper-slide');
+                const activeSlide = swiperInstance.slides?.[swiperInstance.activeIndex] ?? null;
+                if (currentSlide && activeSlide && currentSlide === activeSlide) {
+                    answerInput.focus();
+                    answerInput.select();
+                }
             }, 500);
         }
     } catch (error) {
