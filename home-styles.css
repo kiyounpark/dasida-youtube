@@ -94,9 +94,17 @@ body {
     padding: 20px 0;
 }
 
+.mobile .quiz-swiper {
+    perspective: 900px;
+}
+
 .swiper-wrapper {
     display: flex;
     align-items: stretch;
+}
+
+.mobile .swiper-wrapper {
+    transform-style: preserve-3d;
 }
 
 /* Quiz Card - 이제 swiper-slide가 됨 */
@@ -196,6 +204,8 @@ body {
 
 .mobile .swiper-slide {
     max-width: none;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .swiper-slide-active {
@@ -208,6 +218,21 @@ body {
 .swiper-slide-prev {
     transform: scale(0.9);
     opacity: 0.5;
+}
+
+.mobile .swiper-slide-active {
+    transform: translateZ(0) scale(1);
+    opacity: 1;
+}
+
+.mobile .swiper-slide-next {
+    transform: translateZ(-40px) rotateY(-6deg) scale(0.94);
+    opacity: 0.6;
+}
+
+.mobile .swiper-slide-prev {
+    transform: translateZ(-40px) rotateY(6deg) scale(0.94);
+    opacity: 0.6;
 }
 
 /* Swipe Hint */
