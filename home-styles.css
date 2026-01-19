@@ -306,6 +306,10 @@ body {
     color: #1A1F1F;
 }
 
+.ios .quiz-answer-input {
+    font-size: 16px;
+}
+
 .quiz-answer-input:focus {
     outline: none;
     border-color: #6B9A68;

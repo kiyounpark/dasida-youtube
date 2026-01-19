@@ -50,6 +50,9 @@ export function initQuizSwiper(quizData) {
         if (isMobileDevice()) {
             document.documentElement.classList.add('mobile');
         }
+        if (isIOS()) {
+            document.documentElement.classList.add('ios');
+        }
 
         const swiperOptions = {
             grabCursor: true,
