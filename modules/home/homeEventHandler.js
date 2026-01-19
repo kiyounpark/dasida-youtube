@@ -169,18 +169,6 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
         return;
     }
 
-    // 키보드 내리기 (토스트 메시지가 보이도록) - 여러 방법 시도
-    answerInput.blur();
-    answerInput.setAttribute('readonly', 'readonly');
-    setTimeout(() => {
-        answerInput.removeAttribute('readonly');
-    }, 100);
-
-    // iOS Safari 대응
-    if (document.activeElement) {
-        document.activeElement.blur();
-    }
-
     const swiperInstance = getSwiperInstance();
     if (!swiperInstance) return;
 
@@ -212,7 +200,6 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
         if (response.correct) {
             // 정답 애니메이션 적용
             quizCard.classList.add('correct-answer');
-            showToast('✅ 정답입니다!');
             answerInput.value = '';
 
             setTimeout(() => {
@@ -239,7 +226,6 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
         } else {
             // 오답 애니메이션 적용
             quizCard.classList.add('wrong-answer');
-            showToast('❌ 오답입니다. 다시 시도해보세요');
 
             // 애니메이션 종료 후 클래스 제거 및 입력창 다시 선택
             setTimeout(() => {
