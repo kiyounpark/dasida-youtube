@@ -169,6 +169,9 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
         return;
     }
 
+    // 키보드 내리기 (토스트 메시지가 보이도록)
+    answerInput.blur();
+
     const swiperInstance = getSwiperInstance();
     if (!swiperInstance) return;
 
