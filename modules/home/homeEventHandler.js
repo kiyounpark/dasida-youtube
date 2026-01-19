@@ -140,19 +140,6 @@ export function setupQuizAnswerSubmit(quizzes) {
 
         if (!answerInput) return;
 
-        quizCard.addEventListener('click', () => {
-            console.log('[QuizAnswer] focus input', quizCard.dataset.quizId);
-            answerInput.focus();
-        });
-
-        quizCard.addEventListener('touchend', (event) => {
-            if (event.target.closest('.quiz-answer-input, .submit-answer-button')) {
-                return;
-            }
-            console.log('[QuizAnswer] touch focus input', quizCard.dataset.quizId);
-            answerInput.focus();
-        });
-
         answerInput.addEventListener('touchend', () => {
             answerInput.focus();
         });
