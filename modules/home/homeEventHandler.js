@@ -31,7 +31,11 @@ function showAllQuizzesCompleted() {
             padding: 40px 20px;
             text-align: center;
         ">
-            <div style="font-size: 64px; margin-bottom: 16px;">🎉</div>
+            <img src="quiz-clear.png" alt="퀴즈 완료" style="
+                width: 200px;
+                height: auto;
+                margin-bottom: 24px;
+            ">
             <div style="
                 font-family: 'Pretendard Variable';
                 font-size: 20px;
