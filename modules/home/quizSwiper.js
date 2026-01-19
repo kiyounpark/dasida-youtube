@@ -39,6 +39,11 @@ export function initQuizSwiper(quizData) {
             // 카드 겹치기 효과
             effect: 'cards',
             grabCursor: true,
+            preventClicks: false,
+            preventClicksPropagation: false,
+            touchStartPreventDefault: false,
+            noSwiping: true,
+            noSwipingSelector: '.quiz-answer-input, .submit-answer-button',
 
             // 카드 효과 설정
             cardsEffect: {
