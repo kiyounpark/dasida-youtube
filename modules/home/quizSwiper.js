@@ -176,12 +176,13 @@ function updateProgressIndicator(currentIndex) {
         return;
     }
 
-    if (!quizzes || quizzes.length === 0) {
+    const totalSlides = swiperInstance?.slides?.length ?? quizzes.length;
+    if (!totalSlides) {
         progressElement.textContent = '';
         return;
     }
 
-    progressElement.textContent = `${currentIndex + 1} / ${quizzes.length}`;
+    progressElement.textContent = `${currentIndex + 1} / ${totalSlides}`;
 }
 
 /**
