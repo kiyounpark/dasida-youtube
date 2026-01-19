@@ -169,8 +169,17 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
         return;
     }
 
-    // 키보드 내리기 (토스트 메시지가 보이도록)
+    // 키보드 내리기 (토스트 메시지가 보이도록) - 여러 방법 시도
     answerInput.blur();
+    answerInput.setAttribute('readonly', 'readonly');
+    setTimeout(() => {
+        answerInput.removeAttribute('readonly');
+    }, 100);
+
+    // iOS Safari 대응
+    if (document.activeElement) {
+        document.activeElement.blur();
+    }
 
     const swiperInstance = getSwiperInstance();
     if (!swiperInstance) return;
@@ -201,6 +210,8 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
         console.log('[QuizAnswer] submit response', resolvedQuizId, response);
 
         if (response.correct) {
+            // 정답 애니메이션 적용
+            quizCard.classList.add('correct-answer');
             showToast('✅ 정답입니다!');
             answerInput.value = '';
 
@@ -223,20 +234,18 @@ async function handleAnswerSubmit(answerInput, submitButton, quizCard, quizzes) 
                 if (quizzes.length === 0) {
                     console.log('[QuizAnswer] all quizzes completed');
                     showAllQuizzesCompleted();
-                } else {
-                    // 입력 필드에 포커스 (다음 퀴즈 풀이를 위해)
-                    setTimeout(() => {
-                        const newActiveSlide = swiperInstance.slides[swiperInstance.activeIndex];
-                        const newInput = newActiveSlide?.querySelector('.quiz-answer-input');
-                        if (newInput) {
-                            newInput.focus();
-                        }
-                    }, 300);
                 }
-            }, 1000);
+            }, 800);
         } else {
+            // 오답 애니메이션 적용
+            quizCard.classList.add('wrong-answer');
             showToast('❌ 오답입니다. 다시 시도해보세요');
-            answerInput.select();
+
+            // 애니메이션 종료 후 클래스 제거 및 입력창 다시 선택
+            setTimeout(() => {
+                quizCard.classList.remove('wrong-answer');
+                answerInput.select();
+            }, 500);
         }
     } catch (error) {
         console.error('정답 제출 실패:', error);

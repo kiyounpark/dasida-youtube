@@ -110,6 +110,61 @@ body {
     gap: 16px;
     width: 100%;
     height: auto;
+    transition: background-color 0.3s ease;
+}
+
+/* 정답 애니메이션 - 연두색 배경 */
+.quiz-card.correct-answer {
+    background: #C4D7C2;
+    animation: fadeToGreen 0.5s ease;
+}
+
+@keyframes fadeToGreen {
+    0% {
+        background: #FFFFFF;
+    }
+    50% {
+        background: #C4D7C2;
+    }
+    100% {
+        background: #C4D7C2;
+    }
+}
+
+/* 오답 애니메이션 - 빨간색 배경 + 좌우 흔들림 */
+.quiz-card.wrong-answer {
+    background: #FFE5E5;
+    animation: shakeAndRed 0.5s ease;
+}
+
+@keyframes shakeAndRed {
+    0% {
+        background: #FFFFFF;
+        transform: translateX(0);
+    }
+    15% {
+        background: #FFE5E5;
+        transform: translateX(-10px);
+    }
+    30% {
+        transform: translateX(10px);
+    }
+    45% {
+        transform: translateX(-10px);
+    }
+    60% {
+        transform: translateX(10px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    90% {
+        transform: translateX(5px);
+    }
+    100% {
+        background: #FFFFFF;
+        transform: translateX(0);
+    }
 }
 
 .quiz-content {
